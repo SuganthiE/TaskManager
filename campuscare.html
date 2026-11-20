@@ -1,0 +1,80 @@
+cd<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusCare | Smart Complaint Management</title>
+<style>
+:root{--navy:#14213d;--blue:#3157d5;--sky:#eef3ff;--ink:#182238;--muted:#6b7487;--line:#e6eaf1;--bg:#f5f7fb;--green:#16845b;--amber:#b7791f;--red:#c24141}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(115deg,#14213d,#263f78);color:white;padding:22px max(20px,calc((100% - 1180px)/2));display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:13px;background:#ffffff20;display:grid;place-items:center;font-size:22px}.brand h1{font-size:19px;margin:0}.brand p{margin:4px 0 0;color:#cbd6f4;font-size:12px}
+.header-tag{font-size:12px;color:#dce5ff;border:1px solid #ffffff45;border-radius:30px;padding:8px 12px}
+main{max-width:1180px;margin:26px auto;padding:0 20px}.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}.tab{border:1px solid var(--line);background:white;color:var(--muted);padding:11px 17px;border-radius:10px;cursor:pointer;font-weight:650}.tab.active{background:var(--blue);color:white;border-color:var(--blue)}
+.panel{display:none}.panel.active{display:block}.layout{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 4px 18px #1c2b4b08}.card h2{font-size:18px;margin:0 0 6px}.sub{font-size:13px;color:var(--muted);margin:0 0 18px}
+label{display:block;font-size:13px;font-weight:650;margin:13px 0 7px}input,select,textarea{width:100%;padding:11px 12px;border:1px solid #d9deea;border-radius:9px;font:inherit;font-size:14px;background:white;color:var(--ink)}textarea{min-height:112px;resize:vertical}input:focus,select:focus,textarea:focus{outline:3px solid #3157d51b;border-color:var(--blue)}
+button{font:inherit}.primary{background:var(--blue);color:white;border:0;padding:11px 16px;border-radius:9px;font-weight:700;cursor:pointer}.primary:hover{background:#2447bd}.secondary{background:white;border:1px solid var(--line);padding:10px 13px;border-radius:9px;cursor:pointer;color:var(--ink)}.full{width:100%;margin-top:17px}.message{padding:12px;border-radius:9px;margin-top:13px;font-size:13px;display:none}.success{background:#eaf8f1;color:#116644}.error{background:#fff0f0;color:#a32e2e}
+.lookup{display:flex;gap:8px}.lookup input{flex:1;min-width:0}.result{margin-top:15px}.ticket{border:1px solid var(--line);border-radius:12px;padding:15px;margin-top:12px}.ticket-top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}.ticket strong{font-size:14px}.meta{color:var(--muted);font-size:12px;margin:7px 0}.desc{font-size:13px;line-height:1.5;margin:9px 0}
+.badge{display:inline-block;padding:5px 9px;border-radius:30px;font-size:11px;font-weight:750}.Pending{background:#fff4dc;color:#9a650e}.In-Progress{background:#eaf1ff;color:#3157b9}.Resolved{background:#e6f7ee;color:#14734e}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.stat{background:white;border:1px solid var(--line);border-radius:13px;padding:16px}.stat span{font-size:12px;color:var(--muted)}.stat b{display:block;font-size:27px;margin-top:7px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}.toolbar select,.toolbar input{max-width:220px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px;background:white}table{width:100%;border-collapse:collapse;min-width:780px}th,td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);font-size:13px;vertical-align:top}th{background:#f8f9fc;color:#657087;font-size:11px;text-transform:uppercase;letter-spacing:.05em}td select{min-width:130px;padding:8px;font-size:12px}.empty{text-align:center;color:var(--muted);padding:28px}.small{font-size:11px;color:var(--muted)}.admin-note{font-size:12px;color:var(--muted);margin-top:12px}
+footer{text-align:center;color:#8790a1;font-size:12px;padding:26px}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}main{margin:18px auto;padding:0 13px}.card{padding:17px}header{padding:18px}.header-tag{display:none}}
+</style></head>
+<body>
+<header><div class="brand"><div class="logo">🎓</div><div><h1>CampusCare</h1><p>Smart Campus Complaint Management System</p></div></div><div class="header-tag">A better campus starts with being heard</div></header>
+<main>
+<div class="tabs"><button class="tab active" data-tab="student">Student Portal</button><button class="tab" data-tab="admin">Admin Dashboard</button></div>
+<section id="student" class="panel active">
+<div class="layout">
+<div class="card"><h2>Submit a complaint</h2><p class="sub">Tell us what needs attention. Your complaint will receive a unique tracking ID.</p>
+<form id="complaintForm">
+<label for="studentName">Student name *</label><input id="studentName" maxlength="70" required placeholder="Enter your full name">
+<label for="department">Department *</label><select id="department" required><option value="">Select department</option><option>Artificial Intelligence & Data Science</option><option>Computer Science and Engineering</option><option>Electronics and Communication Engineering</option><option>Electrical and Electronics Engineering</option><option>Mechanical Engineering</option><option>Civil Engineering</option><option>Information Technology</option><option>Other</option></select>
+<label for="category">Complaint category *</label><select id="category" required><option value="">Select category</option><option>Classroom / Projector</option><option>Wi-Fi / Network</option><option>Drinking Water</option><option>Laboratory Equipment</option><option>Washroom</option><option>Hostel Maintenance</option><option>Electrical / Lighting</option><option>Other</option></select>
+<label for="description">Complaint description *</label><textarea id="description" required minlength="10" maxlength="1000" placeholder="Describe the issue, location and when it occurred (at least 10 characters)"></textarea>
+<button class="primary full" type="submit">Submit complaint</button><div id="submitMessage" class="message"></div>
+</form></div>
+<div class="card"><h2>Track your complaint</h2><p class="sub">Enter your complaint ID to check the latest status.</p><div class="lookup"><input id="trackId" placeholder="e.g. CC-2026-001"><button class="primary" id="trackBtn">Track</button></div><div id="trackResult" class="result"></div>
+<hr style="border:0;border-top:1px solid var(--line);margin:22px 0"><h2>My submitted complaints</h2><p class="sub">Search by your name to view complaints submitted on this browser.</p><div class="lookup"><input id="myName" placeholder="Enter your name"><button class="secondary" id="myBtn">View</button></div><div id="myResult" class="result"></div></div>
+</div></section>
+<section id="admin" class="panel">
+<div class="card"><h2>Admin dashboard</h2><p class="sub">Monitor campus issues and update complaint progress.</p>
+<div class="stats"><div class="stat"><span>Total complaints</span><b id="totalCount">0</b></div><div class="stat"><span>Pending</span><b id="pendingCount">0</b></div><div class="stat"><span>In progress</span><b id="progressCount">0</b></div><div class="stat"><span>Resolved</span><b id="resolvedCount">0</b></div></div>
+<div class="toolbar"><input id="adminSearch" placeholder="Search ID, student or description"><select id="categoryFilter"><option value="">All categories</option></select><select id="statusFilter"><option value="">All statuses</option><option>Pending</option><option>In Progress</option><option>Resolved</option></select><button class="secondary" id="resetFilters">Reset filters</button><button class="secondary" id="exportBtn">Export CSV</button></div>
+<div class="table-wrap"><table><thead><tr><th>Complaint ID</th><th>Student</th><th>Department</th><th>Category</th><th>Description</th><th>Date</th><th>Status</th></tr></thead><tbody id="adminRows"></tbody></table></div>
+<p class="admin-note">Demo note: This prototype uses browser localStorage. Records persist after refresh on the same browser/device. For a real college-wide deployment, connect a secure shared database and add administrator authentication.</p>
+</div></section>
+</main><footer>CampusCare · Smart, transparent and accountable campus support</footer>
+<script>
+const KEY='campuscare_complaints_v1';
+const seed=[
+{id:'CC-2026-001',name:'Aarav Kumar',department:'Electronics and Communication Engineering',category:'Classroom / Projector',description:'The projector in ECE Block, Room 204 is not powering on during lectures.',date:'2026-11-18T09:30:00',status:'Pending'},
+{id:'CC-2026-002',name:'Meera S',department:'Computer Science and Engineering',category:'Wi-Fi / Network',description:'Wi-Fi connectivity keeps disconnecting in the second-floor project area.',date:'2026-11-18T11:15:00',status:'In Progress'},
+{id:'CC-2026-003',name:'Rahul P',department:'Mechanical Engineering',category:'Laboratory Equipment',description:'The digital vernier caliper in the manufacturing lab is giving inconsistent readings.',date:'2026-11-17T14:00:00',status:'Resolved'},
+{id:'CC-2026-004',name:'Nisha R',department:'Information Technology',category:'Drinking Water',description:'The drinking water dispenser near the library is not cooling water.',date:'2026-11-19T08:45:00',status:'Pending'}
+];
+function load(){try{let v=JSON.parse(localStorage.getItem(KEY));if(Array.isArray(v))return v;}catch(e){}localStorage.setItem(KEY,JSON.stringify(seed));return seed.slice()}
+let complaints=load();
+function save(){localStorage.setItem(KEY,JSON.stringify(complaints))}
+function escapeHTML(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function fmt(d){return new Date(d).toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short'})}
+function badge(s){return `<span class="badge ${s.replace(' ','-')}">${escapeHTML(s)}</span>`}
+function card(c){return `<div class="ticket"><div class="ticket-top"><strong>${escapeHTML(c.id)}</strong>${badge(c.status)}</div><div class="meta">${escapeHTML(c.name)} · ${escapeHTML(c.department)} · ${escapeHTML(c.category)}</div><div class="desc">${escapeHTML(c.description)}</div><div class="small">Submitted: ${fmt(c.date)}</div></div>`}
+function showMsg(el,msg,type){el.className='message '+type;el.textContent=msg;el.style.display='block'}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab,.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active');if(b.dataset.tab==='admin')renderAdmin()}));
+document.getElementById('complaintForm').addEventListener('submit',e=>{e.preventDefault();let name=document.getElementById('studentName').value.trim(),department=document.getElementById('department').value,category=document.getElementById('category').value,description=document.getElementById('description').value.trim(),msg=document.getElementById('submitMessage');if(!name||!department||!category||description.length<10){showMsg(msg,'Please complete all fields. Description must contain at least 10 characters.','error');return}
+let year=new Date().getFullYear(),seq=String(complaints.filter(c=>c.id.startsWith('CC-'+year)).length+1).padStart(3,'0'),id=`CC-${year}-${seq}`;while(complaints.some(c=>c.id===id)){seq=String(Number(seq)+1).padStart(3,'0');id=`CC-${year}-${seq}`}
+let c={id,name,department,category,description,date:new Date().toISOString(),status:'Pending'};complaints.unshift(c);save();e.target.reset();showMsg(msg,`Complaint submitted successfully. Your tracking ID is ${id}. Please save this ID.`,'success');document.getElementById('trackId').value=id;document.getElementById('trackResult').innerHTML=card(c);renderAdmin()});
+document.getElementById('trackBtn').addEventListener('click',()=>{let id=document.getElementById('trackId').value.trim().toUpperCase(),c=complaints.find(x=>x.id.toUpperCase()===id),out=document.getElementById('trackResult');out.innerHTML=c?card(c):'<div class="message error" style="display:block">No complaint found. Check the ID and try again.</div>'});
+document.getElementById('trackId').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('trackBtn').click()});
+document.getElementById('myBtn').addEventListener('click',()=>{let n=document.getElementById('myName').value.trim().toLowerCase(),out=document.getElementById('myResult');if(!n){out.innerHTML='<div class="message error" style="display:block">Enter your name to search.</div>';return}let rows=complaints.filter(c=>c.name.toLowerCase()===n);out.innerHTML=rows.length?rows.map(card).join(''):'<div class="message error" style="display:block">No complaints found for that exact name on this browser.</div>'});
+function renderAdmin(){let statuses=['Pending','In Progress','Resolved'];document.getElementById('totalCount').textContent=complaints.length;document.getElementById('pendingCount').textContent=complaints.filter(c=>c.status==='Pending').length;document.getElementById('progressCount').textContent=complaints.filter(c=>c.status==='In Progress').length;document.getElementById('resolvedCount').textContent=complaints.filter(c=>c.status==='Resolved').length;
+let cats=[...new Set(complaints.map(c=>c.category))].sort(),sel=document.getElementById('categoryFilter'),old=sel.value;sel.innerHTML='<option value="">All categories</option>'+cats.map(c=>`<option>${escapeHTML(c)}</option>`).join('');sel.value=old;
+let q=document.getElementById('adminSearch').value.toLowerCase(),cat=sel.value,st=document.getElementById('statusFilter').value,filtered=complaints.filter(c=>(!q||[c.id,c.name,c.description,c.department].some(v=>v.toLowerCase().includes(q)))&&(!cat||c.category===cat)&&(!st||c.status===st));
+document.getElementById('adminRows').innerHTML=filtered.length?filtered.map(c=>`<tr><td><strong>${escapeHTML(c.id)}</strong></td><td>${escapeHTML(c.name)}</td><td>${escapeHTML(c.department)}</td><td>${escapeHTML(c.category)}</td><td>${escapeHTML(c.description)}</td><td>${fmt(c.date)}</td><td><select aria-label="Update status for ${escapeHTML(c.id)}" data-id="${escapeHTML(c.id)}">${statuses.map(s=>`<option ${c.status===s?'selected':''}>${s}</option>`).join('')}</select></td></tr>`).join(''):'<tr><td colspan="7" class="empty">No complaints match these filters.</td></tr>';
+document.querySelectorAll('#adminRows select').forEach(s=>s.addEventListener('change',()=>{let c=complaints.find(x=>x.id===s.dataset.id);if(c){c.status=s.value;save();renderAdmin();}}))}
+['adminSearch','categoryFilter','statusFilter'].forEach(id=>document.getElementById(id).addEventListener(id==='adminSearch'?'input':'change',renderAdmin));
+document.getElementById('resetFilters').addEventListener('click',()=>{document.getElementById('adminSearch').value='';document.getElementById('categoryFilter').value='';document.getElementById('statusFilter').value='';renderAdmin()});
+document.getElementById('exportBtn').addEventListener('click',()=>{let cols=['id','name','department','category','description','date','status'],csv=[cols.join(','),...complaints.map(c=>cols.map(k=>'"'+String(c[k]??'').replace(/"/g,'""')+'"').join(','))].join('\n'),url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'})),a=document.createElement('a');a.href=url;a.download='campuscare-complaints.csv';a.click();URL.revokeObjectURL(url)});
+renderAdmin();
+</script></body></html>
